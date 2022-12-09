@@ -8,7 +8,7 @@ def index():
 
 @app.route("/admin")
 def admin():
-    username = admin
+    username = "admin"
     return render_template("admin.html",username = username)
 
 @app.route("/work")
