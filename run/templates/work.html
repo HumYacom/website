@@ -3,46 +3,42 @@
 {% block content %}
 <div class="d-flex justify-content-center">
   <form action="" method="get">
-    <div class="row g-3">
-      <div class="col">
-        <header></header>
-        <label for="">necessity</label>
+    <div class="row">
+      <div class="col-md-6">
+        <label for="name01">ชื่อ</label>
         <h1></h1>
-        <select class="form-select" aria-label="Default select example">
-          <option selected>ส่งเรื่องแบบ</option>
+        <input type="text" class="form-control" id="name01">
+      </div>
+      <div class="col-md-6">
+        <label for="sel01">ระดับ</label>
+        <h1></h1>
+        <select class="form-select" aria-label="Default select example" id="sel01">
           <option value="1">ปกติ</option>
           <option value="2">ด่วน</option>
-      </div>  
-      <h1></h1>
-      <div class="">
-        <label for="">Name</label>
-        <h1></h1>
-        <input type="text" class="form-control" placeholder="First name" aria-label="First name">
       </div>
-
-    <h1></h1>
-
-    <div class="row g-3">
-      <div class="col">
-        <label for="">Name</label>
-        <h1></h1>
-        <input type="text" class="form-control" placeholder="First name" aria-label="First name">
-      </div>
-
-      
-        <div class="col">
-          <label for="">necessity</label>
-          <h1></h1>
-          <select class="form-select" aria-label="Default select example">
-            <option selected>ส่งเรื่องแบบ</option>
-            <option value="1">ปกติ</option>
-            <option value="2">ด่วน</option>
-        </div>    
     </div>
 
+    <div class="row g-3">
+      <div class="col-md-5">
+        <label for="sel02">ระดับ</label>
+        <h1></h1>
+        <select class="form-select" aria-label="Default select example" id="sel02">
+          <option value="1">ปกติ</option>
+          <option value="2">ด่วน</option>
+      </div>
+      <div class="col-md-6">
+        <label for="sel03">ระดับ</label>
+        <h1></h1>
+        <select class="form-select" aria-label="Default select example" id="sel03">
+          <option value="1">ปกติ</option>
+          <option value="2">ด่วน</option>
+      </div>
+    </div>
 
-
-
+    <div class="col-md-2">
+      <label for=""></label>
+      
+    </div>
   </form>
 
 

@@ -17,9 +17,9 @@ def work():
 
 @app.route("/sendDoc")
 def signupfrom():
-    idn = request.args.get("idname")
-    des = request.args.get("Description")
-    return render_template("sendDoc.html",data={"Name":idn,"Description":des})
+    idname = request.args.get("idname")
+    description = request.args.get("Description")
+    return render_template("sendDoc.html",data={"idname":idname,"Description":description})
 
 if __name__ == "__main__":
     app.run(debug=True)
