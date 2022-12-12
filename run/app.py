@@ -17,7 +17,7 @@ def work():
 
 @app.route("/sendDoc")
 def signupfrom():
-    idn = request.args.get("Name")
+    idn = request.args.get("idname")
     des = request.args.get("Description")
     return render_template("sendDoc.html",data={"Name":idn,"Description":des})
 
