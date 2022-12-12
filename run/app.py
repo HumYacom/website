@@ -1,4 +1,4 @@
-from flask import Flask,render_template
+from flask import Flask,render_template,request
 app = Flask(__name__)
 
 @app.route("/")
@@ -14,6 +14,12 @@ def admin():
 @app.route("/work")
 def work():
     return render_template("work.html")
+
+@app.route("/senddata")
+def signupfrom():
+    idn = request.args.get("Name")
+    des = request.args.get("Description")
+    return render_template("work.html",data={"Name":idn,"Description":des})
 
 if __name__ == "__main__":
     app.run(debug=True)
