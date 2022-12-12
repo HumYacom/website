@@ -15,11 +15,11 @@ def admin():
 def work():
     return render_template("work.html")
 
-@app.route("/senddata")
+@app.route("/sendDoc")
 def signupfrom():
     idn = request.args.get("Name")
     des = request.args.get("Description")
-    return render_template("work.html",data={"Name":idn,"Description":des})
+    return render_template("sendDoc.html",data={"Name":idn,"Description":des})
 
 if __name__ == "__main__":
     app.run(debug=True)
