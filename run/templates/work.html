@@ -18,7 +18,7 @@
       <div class="col-md-6">
         <label for="">ผู้รับผิดชอบ (Sale)</label>
         <br>
-        <select class="form-select" name="level" aria-label="Default select example">
+        <select class="form-select" name="sale" aria-label="Default select example">
           <option selected>กรุณาเลือกชื่อพนักงานขาย</option>
           <option value="Supapich">Supapich</option>
           <option value="Pariyakorn">Pariyakorn</option>
@@ -33,12 +33,12 @@
       <div class="col-md-6">
         <label for="">อีเมล์ (Email)</label>
         <br>
-        <input type="text" name="idname" class="form-control" size="60">
+        <input type="text" name="mail" class="form-control" size="60">
       </div>
       <div class="col-md-6">
         <label for="">ราคา (price)</label>
         <br>
-        <select class="form-select" name="level" aria-label="Default select example">
+        <select class="form-select" name="price" aria-label="Default select example">
           <option selected>ราคา</option>
           <option value="รวมบรรจุภัณฑ์|including packaging">รวมบรรจุภัณฑ์|including packaging</option>
           <option value="ไม่รวมบรรจุภัณฑ์|packaging not including">ไม่รวมบรรจุภัณฑ์|packaging not including</option>
@@ -50,12 +50,12 @@
       <div class="col-md-6">
         <label for="">เลขประจำตัวผู้เสียภาษี (Tax ID)</label>
         <br>
-        <input type="text" name="idname" class="form-control" size="60">
+        <input type="text" name="tax" class="form-control" size="60">
       </div>
       <div class="col-md-6">
         <label for="">ประเภทการชำระ (Payment)</label>
         <br>
-        <select class="form-select" name="level" aria-label="Default select example">
+        <select class="form-select" name="Payment" aria-label="Default select example">
           <option selected>การชำระเงิน</option>
           <option value="ชำระเงินเต็มจำนวน|Paid 100%">ชำระเงินเต็มจำนวน|Paid 100%</option>
           <option value="มัดจำ 50% ก่อนส่ง 50%|Deposit 50% Before delivery 50%">มัดจำ 50% ก่อนส่ง 50%|Deposit 50% Before
@@ -73,7 +73,7 @@
       <div class="col-md-6">
         <label for="">โทรศัพท์ (Tel.)</label>
         <br>
-        <input type="text" name="idname" class="form-control" size="60">
+        <input type="text" name="tel" class="form-control" size="60">
       </div>
     </div>
     <br>
@@ -81,12 +81,12 @@
       <div class="col-md-6">
         <label for="">ที่อยู่</label>
         <br>
-        <textarea name="Address" id="" cols="30" rows="10" maxlength="100"></textarea>
+        <textarea name="Address" name="addr" id="" cols="30" rows="10" maxlength="100"></textarea>
       </div>
     </div>
     <br>
     <div class="table-title">
-      
+
       <div class="row">
         <div class="col-sm-4">
           <button type="button" class="btn btn-info add-new"><i class="fa fa-plus"></i> Add New</button>
@@ -95,22 +95,22 @@
     </div>
     <br>
     <div class="d-flex justify-content-center">
-    <table class="table table-bordered">
-      <thead>
+      <table class="table table-bordered">
+        <thead>
           <tr>
-              <th>NO.</th>
-              <th>รายการสินค้า</th>
-              <th>ขนาดบรรจุ</th>
-              <th>จำนวน</th>
-              <th>ราคาต่อหน่วย</th>
-              <th>รวมเป็นเงิน</th>
+            <th>NO.</th>
+            <th>รายการสินค้า</th>
+            <th>ขนาดบรรจุ</th>
+            <th>จำนวน</th>
+            <th>ราคาต่อหน่วย</th>
+            <th>รวมเป็นเงิน</th>
           </tr>
-      </thead>
-      <tbody>
+        </thead>
+        <tbody>
     </div>
 </div>
 </form>
 
 {% endblock %}
 <input type="submit" onclick="alert('รายละเอียดของคุณได้ถูกส่งแล้ว')" value="ส่งข้อมูล" class="btn btn-success">
-<input type="reset" value="ล้าง" class="btn btn-danger">
+    <input type="reset" value="ล้าง" class="btn btn-danger">
