@@ -1,82 +1,95 @@
 {% extends "layout.html"%}
 
 {% block content %}
+<br><br><br><br><br><br>
 <div class="d-flex justify-content-center">
-  <form action="" method="get">
+  <h4>ใบเสนอราคา</h4>
+</div>
+<br>
+<div class="position-absolute top-60 start-50 translate-middle-x">
+  <form action="{{url_for('adminup')}}" method="get">
     <div class="row">
       <div class="col-md-6">
-        <label for="name01">ชื่อ</label>
-        <h1></h1>
-        <input type="text" class="form-control" id="name01">
+        <label for="">ชื่อ (Customer Name)</label>
+        <br>
+        <input type="text" name="idname" class="form-control" size="60">
       </div>
       <div class="col-md-6">
-        <label for="sel01">ระดับ</label>
-        <h1></h1>
-        <select class="form-select" aria-label="Default select example" id="sel01">
-          <option value="1">ปกติ</option>
-          <option value="2">ด่วน</option>
+        <label for="">ผู้รับผิดชอบ (Sale)</label>
+        <br>
+        <select class="form-select" name="level" aria-label="Default select example">
+          <option selected>กรุณาเลือกชื่อพนักงานขาย</option>
+          <option value="Supapich">Supapich</option>
+          <option value="Pariyakorn">Pariyakorn</option>
+          <option value="Nitin">Nitin</option>
+          <option value="Aorapas">Aorapas</option>
+          <option value="Chanyapak">Chanyapak</option>
+        </select>
       </div>
     </div>
-
-    <div class="row g-3">
-      <div class="col-md-5">
-        <label for="sel02">ระดับ</label>
-        <h1></h1>
-        <select class="form-select" aria-label="Default select example" id="sel02">
-          <option value="1">ปกติ</option>
-          <option value="2">ด่วน</option>
+    <br>
+    <div class="row">
+      <div class="col-md-6">
+        <label for="">อีเมล์ (Email)</label>
+        <br>
+        <input type="text" name="idname" class="form-control" size="60">
       </div>
       <div class="col-md-6">
-        <label for="sel03">ระดับ</label>
-        <h1></h1>
-        <select class="form-select" aria-label="Default select example" id="sel03">
-          <option value="1">ปกติ</option>
-          <option value="2">ด่วน</option>
+        <label for="">ราคา (price)</label>
+        <br>
+        <select class="form-select" name="level" aria-label="Default select example">
+          <option selected>ราคา</option>
+          <option value="รวมบรรจุภัณฑ์|including packaging">รวมบรรจุภัณฑ์|including packaging</option>
+          <option value="ไม่รวมบรรจุภัณฑ์|packaging not including">ไม่รวมบรรจุภัณฑ์|packaging not including</option>
+        </select>
       </div>
     </div>
-
-    <div class="col-md-2">
-      <label for=""></label>
-      
+    <br>
+    <div class="row">
+      <div class="col-md-6">
+        <label for="">เลขประจำตัวผู้เสียภาษี (Tax ID)</label>
+        <br>
+        <input type="text" name="idname" class="form-control" size="60">
+      </div>
+      <div class="col-md-6">
+        <label for="">ประเภทการชำระ (Payment)</label>
+        <br>
+        <select class="form-select" name="level" aria-label="Default select example">
+          <option selected>การชำระเงิน</option>
+          <option value="ชำระเงินเต็มจำนวน|Paid 100%">ชำระเงินเต็มจำนวน|Paid 100%</option>
+          <option value="มัดจำ 50% ก่อนส่ง 50%|Deposit 50% Before delivery 50%">มัดจำ 50% ก่อนส่ง 50%|Deposit 50% Before
+            delivery 50%</option>
+          <option value="มัดจำ 50% หลังส่ง 50%|Deposit 50% After delivery 50%">มัดจำ 50% หลังส่ง 50%|Deposit 50% After
+            delivery 50%</option>
+          <option value="Credit 7 วัน">Credit 7 วัน</option>
+          <option value="Credit 14 วัน">Credit 14 วัน</option>
+          <option value="Credit 30 วัน">Credit 30 วัน</option>
+        </select>
+      </div>
     </div>
-  </form>
-
-
-
-
-
-
-
-
-  <!--    <form action="" method="get">
-        <div class="col-md-6">
-          <h1></h1>
-            <label for="">Name</label>
-            <input type="text" name="idname" class="form-control" placeholder="" aria-label="">   
-        </div>
-        <div class="col-md-6">
-          <label for="">necessity</label>
-      <h1></h1>
-        <select class="form-select" aria-label="Default select example">
-          <option selected>ส่งเรื่องแบบ</option>
-          <option value="1">ปกติ</option>
-          <option value="2">ด่วน</option>
-        </div>
-
-        <h1></h1>
-        <div class="form-group">
-          <label for="">notify</label>
-          <textarea name="notify" class = "form-control" id="" cols="30" rows="10"></textarea>
+    <br>
+    <div class="row">
+      <div class="col-md-6">
+        <label for="">โทรศัพท์ (Tel.)</label>
+        <br>
+        <input type="text" name="idname" class="form-control" size="60">
       </div>
       </div>
+      <br>
+      <div class="row">
+        <div class="col-md-6">
+          <label for="">ที่อยู่</label>
+          <br>
+          <textarea name="Address" id="" cols="30" rows="10" maxlength="100"></textarea>
+        </div>
+        </div>
         
-            <h1></h1>
-                <div>
-      <input type="button" value="success" class="btn btn-success">
-      <input type="reset" value="reset" class="btn btn-danger">
-    </div>
 
-    </form>   -->
+
+    <br>
+    <input type="submit" onclick="alert('รายละเอียดของคุณได้ถูกส่งแล้ว')" value="ส่งข้อมูล" class="btn btn-success">
+    <input type="reset" value="ล้าง" class="btn btn-danger">
 </div>
+</form>
 
 {% endblock %}

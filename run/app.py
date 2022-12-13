@@ -6,20 +6,18 @@ def index():
     data = {"name":"menu","adddoc":"AddDoc"}
     return render_template("index.html",mydata = data)
 
-@app.route("/admin")
-def admin():
-    username = "admin"
-    return render_template("admin.html",username = username)
-
 @app.route("/work")
 def work():
     return render_template("work.html")
 
-@app.route("/sendDoc")
-def signupfrom():
+@app.route("/sendData")
+def adminup():
     idname = request.args.get("idname")
-    description = request.args.get("Description")
-    return render_template("sendDoc.html",data={"idname":idname,"Description":description})
+    level = request.args.get("level")
+    department = request.args.get("department")
+    sos = request.args.get("sos")
+    notify = request.args.get("notify")
+    return render_template("youfuck.html",data={"name":idname ,"level":level,"department":department,"sos":sos,"notify":notify})
 
 if __name__ == "__main__":
     app.run(debug=True)
