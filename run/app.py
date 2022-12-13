@@ -6,7 +6,7 @@ def index():
     data = {"name":"menu","adddoc":"AddDoc"}
     return render_template("index.html",mydata = data)
 
-@app.route("/work")
+@app.route("/work") 
 def work():
     return render_template("work.html")
 

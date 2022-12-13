@@ -1,6 +1,7 @@
 {% extends "layout.html"%}
 
 {% block content %}
+
 <br><br><br><br><br><br>
 <div class="d-flex justify-content-center">
   <h4>ใบเสนอราคา</h4>
@@ -74,22 +75,42 @@
         <br>
         <input type="text" name="idname" class="form-control" size="60">
       </div>
-      </div>
-      <br>
-      <div class="row">
-        <div class="col-md-6">
-          <label for="">ที่อยู่</label>
-          <br>
-          <textarea name="Address" id="" cols="30" rows="10" maxlength="100"></textarea>
-        </div>
-        </div>
-        
-
-
+    </div>
     <br>
-    <input type="submit" onclick="alert('รายละเอียดของคุณได้ถูกส่งแล้ว')" value="ส่งข้อมูล" class="btn btn-success">
-    <input type="reset" value="ล้าง" class="btn btn-danger">
+    <div class="row">
+      <div class="col-md-6">
+        <label for="">ที่อยู่</label>
+        <br>
+        <textarea name="Address" id="" cols="30" rows="10" maxlength="100"></textarea>
+      </div>
+    </div>
+    <br>
+    <div class="table-title">
+      
+      <div class="row">
+        <div class="col-sm-4">
+          <button type="button" class="btn btn-info add-new"><i class="fa fa-plus"></i> Add New</button>
+        </div>
+      </div>
+    </div>
+    <br>
+    <div class="d-flex justify-content-center">
+    <table class="table table-bordered">
+      <thead>
+          <tr>
+              <th>NO.</th>
+              <th>รายการสินค้า</th>
+              <th>ขนาดบรรจุ</th>
+              <th>จำนวน</th>
+              <th>ราคาต่อหน่วย</th>
+              <th>รวมเป็นเงิน</th>
+          </tr>
+      </thead>
+      <tbody>
+    </div>
 </div>
 </form>
 
 {% endblock %}
+<input type="submit" onclick="alert('รายละเอียดของคุณได้ถูกส่งแล้ว')" value="ส่งข้อมูล" class="btn btn-success">
+<input type="reset" value="ล้าง" class="btn btn-danger">
