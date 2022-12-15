@@ -2,12 +2,190 @@
 
 {% block content %}
 
+<head>
+  <style>
+    body {
+      color: #404E67;
+      background: #F5F7FA;
+      font-family: 'Open Sans', sans-serif;
+    }
+
+    .table-wrapper {
+      width: 700px;
+      margin: 30px auto;
+      background: #fff;
+      padding: 20px;
+      box-shadow: 0 1px 1px rgba(0, 0, 0, .05);
+    }
+
+    .table-title {
+      padding-bottom: 10px;
+      margin: 0 0 10px;
+    }
+
+    .table-title h2 {
+      margin: 6px 0 0;
+      font-size: 22px;
+    }
+
+    .table-title .add-new {
+      float: right;
+      height: 30px;
+      font-weight: bold;
+      font-size: 12px;
+      text-shadow: none;
+      min-width: 100px;
+      border-radius: 50px;
+      line-height: 13px;
+    }
+
+    .table-title .add-new i {
+      margin-right: 4px;
+    }
+
+    table.table {
+      table-layout: fixed;
+    }
+
+    table.table tr th,
+    table.table tr td {
+      border-color: #e9e9e9;
+    }
+
+    table.table th i {
+      font-size: 13px;
+      margin: 0 5px;
+      cursor: pointer;
+    }
+
+    table.table th:last-child {
+      width: 100px;
+    }
+
+    table.table td a {
+      cursor: pointer;
+      display: inline-block;
+      margin: 0 5px;
+      min-width: 24px;
+    }
+
+    table.table td a.add {
+      color: #27C46B;
+    }
+
+    table.table td a.edit {
+      color: #FFC107;
+    }
+
+    table.table td a.delete {
+      color: #E34724;
+    }
+
+    table.table td i {
+      font-size: 19px;
+    }
+
+    table.table td a.add i {
+      font-size: 24px;
+      margin-right: -1px;
+      position: relative;
+      top: 3px;
+    }
+
+    table.table .form-control {
+      height: 32px;
+      line-height: 32px;
+      box-shadow: none;
+      border-radius: 2px;
+    }
+
+    table.table .form-control.error {
+      border-color: #f50000;
+    }
+
+    table.table td .add {
+      display: none;
+    }
+  </style>
+</head>
+
+<script>
+  $(document).ready(function () {
+    $('[data-toggle="tooltip"]').tooltip();
+    var actions = $("table td:last-child").html();
+    // Append table with add row form on add new button click
+    $(".add-new").click(function () {
+      $(this).attr("disabled", "disabled");
+      var index = $("table tbody tr:last-child").index();
+      var row = '<tr>' +
+        '<td><input type="text" class="form-control" name="" id="no."></td>' +
+        '<td><input type="text" class="form-control" name="" id="รายการสินค้า"></td>' +
+        '<td><input type="text" class="form-control" name="" id="ขนาดบรรจุ"></td>' +
+        '<td><input type="number" class="form-control" name="" id="a" value = ""></td>' ,onkeyup = "mult(document.getElementById('a').value,!!document.getElementById('b').value);"+  
+        '<td><input type="text" class="form-control" name="" id="b" value = ""></td> ' ,onkeyup = "mult(document.getElementById('a').value,document.getElementById('b').value);"+
+        '<td><input type="input-group-text" class="form-control" name="" value="0" id="ans"  readonly></td>' +
+        '<td>' + actions + '</td>' +
+        '</tr>';
+      $("table").append(row);
+      $("table tbody tr").eq(index + 1).find(".add, .edit").toggle();
+      $('[data-toggle="tooltip"]').tooltip();
+    });
+    // Add row on add button click
+    $(document).on("click", ".add", function () {
+      var empty = false;
+      var input = $(this).parents("tr").find('input[type="text"]');
+      input.each(function () {
+        if (!$(this).val()) {
+          $(this).addClass("error");
+          empty = true;
+        } else {
+          $(this).removeClass("error");
+        }
+      });
+      $(this).parents("tr").find(".error").first().focus();
+      if (!empty) {
+        input.each(function () {
+          $(this).parent("td").html($(this).val());
+        });
+        $(this).parents("tr").find(".add, .edit").toggle();
+        $(".add-new").removeAttr("disabled");
+      }
+    });
+    // Edit row on edit button click
+    $(document).on("click", ".edit", function () {
+      $(this).parents("tr").find("td:not(:last-child)").each(function () {
+        $(this).html('<input type="text" class="form-control" value="' + $(this).text() + '">');
+      });
+      $(this).parents("tr").find(".add, .edit").toggle();
+      $(".add-new").attr("disabled", "disabled");
+    });
+    // Delete row on delete button click
+    $(document).on("click", ".delete", function () {
+      $(this).parents("tr").remove();
+      $(".add-new").removeAttr("disabled");
+    });
+  });
+</script>
+
+<script>
+  function mult(p1, p2) {
+    var ans;
+    console.log("p1 : ${p1}")
+    console.log("p2 : ${p2}")
+    ans = p1 * p2;
+
+    document.getElementById('ans').value = parseFloat(ans).toFixed(2);
+  }
+</script>
+
+
+
 <br><br><br><br><br><br>
 <div class="d-flex justify-content-center">
   <h4>ใบเสนอราคา</h4>
 </div>
 <br>
-<div class="position-absolute top-60 start-50 translate-middle-x">
+<div class="d-flex align-items-stretch">
   <form action="{{url_for('adminup')}}" method="get">
     <div class="row">
       <div class="col-md-6">
@@ -58,7 +236,8 @@
         <select class="form-select" name="Payment" aria-label="Default select example">
           <option selected>การชำระเงิน</option>
           <option value="ชำระเงินเต็มจำนวน|Paid 100%">ชำระเงินเต็มจำนวน|Paid 100%</option>
-          <option value="มัดจำ 50% ก่อนส่ง 50%|Deposit 50% Before delivery 50%">มัดจำ 50% ก่อนส่ง 50%|Deposit 50% Before
+          <option value="มัดจำ 50% ก่อนส่ง 50%|Deposit 50% Before delivery 50%">มัดจำ 50% ก่อนส่ง 50%|Deposit 50%
+            Before
             delivery 50%</option>
           <option value="มัดจำ 50% หลังส่ง 50%|Deposit 50% After delivery 50%">มัดจำ 50% หลังส่ง 50%|Deposit 50% After
             delivery 50%</option>
@@ -84,33 +263,76 @@
         <textarea name="Address" name="addr" id="" cols="30" rows="10" maxlength="100"></textarea>
       </div>
     </div>
-    <!--
+
     <br>
-    <div class="table-title">
-      <div class="row">
-        <div class="col-sm-4">
-          <button type="button" class="btn btn-info add-new"><i class="fa fa-plus"></i> Add New</button>
-        </div>
+
+    <div class="row">
+      <div class="d-flex justify-content-evenly">
+        <button type="button" class="btn btn-info add-new"><i class="material-icons">&#xE03B;</i> Add New</button>
       </div>
     </div>
     <br>
-    <div class="d-flex justify-content-center">
-      <table class="table table-bordered">
-        <thead>
-          <tr>
-            <th>NO.</th>
-            <th>รายการสินค้า</th>
-            <th>ขนาดบรรจุ</th>
-            <th>จำนวน</th>
-            <th>ราคาต่อหน่วย</th>
-            <th>รวมเป็นเงิน</th>
-          </tr>
-        </thead>
-        <tbody>
-    </div>-->
+
+
+    <table class="table table-bordered">
+      <thead>
+        <tr>
+          <th>NO.</th>
+          <th>รายการสินค้า</th>
+          <th>ขนาดบรรจุ</th>
+          <th>จำนวน</th>
+          <th>ราคาต่อหน่วย</th>
+          <th>รวมเป็นเงิน</th>
+          <th>Actions</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td></td>
+          <td></td>
+          <td></td>
+          <td></td>
+          <td></td>
+          <td></td>
+          <td>
+            <a class="add" title="Add" data-toggle="tooltip"><i class="material-icons">&#xE03B;</i></a>
+            <a class="edit" title="Edit" data-toggle="tooltip"><i class="material-icons">&#xE254;</i></a>
+            <a class="delete" data-toggle="tooltip"><i class="material-icons">&#xE872;</i></a>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+    <br><br>
+
+    <div class="row">
+      <div class="col-md-6">
+        <label for="">รายละเอียดเพิ่มเติม</label>
+        <br>
+        <textarea name="Details" name="Details" id="" cols="30" rows="10" maxlength="100"></textarea>
+      </div>
+      <div class="col-md-6">
+        <label for="">Remark</label>
+        <br>
+        <textarea name="Remark" name="mark" id="" cols="30" rows="10" maxlength="100" placeholder="กรอกรายละเอียด packaging เช่น
+  - xxx
+  - xxxxx
+  - xxxx"></textarea>
+      </div>
+    </div>
+
+
+    <br><br>
+
     <input type="submit" onclick="alert('รายละเอียดของคุณได้ถูกส่งแล้ว')" value="ส่งข้อมูล" class="btn btn-success">
     <input type="reset" value="ล้าง" class="btn btn-danger">
 </div>
+
+
+</div>
 </form>
+
+
+
+
 
 {% endblock %}
