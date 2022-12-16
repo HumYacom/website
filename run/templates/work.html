@@ -113,23 +113,27 @@
   $(document).ready(function () {
     $('[data-toggle="tooltip"]').tooltip();
     var actions = $("table td:last-child").html();
+
+
     // Append table with add row form on add new button click
     $(".add-new").click(function () {
       $(this).attr("disabled", "disabled");
       var index = $("table tbody tr:last-child").index();
-      var row = '<tr>' +
-        '<td><input type="text" class="form-control" name="" id="no."></td>' +
-        '<td><input type="text" class="form-control" name="" id="รายการสินค้า"></td>' +
-        '<td><input type="text" class="form-control" name="" id="ขนาดบรรจุ"></td>' +
-        '<td><input type="number" class="form-control" name="" id="a" value = ""></td>' ,onkeyup = "mult(document.getElementById('a').value,!!document.getElementById('b').value);"+  
-        '<td><input type="text" class="form-control" name="" id="b" value = ""></td> ' ,onkeyup = "mult(document.getElementById('a').value,document.getElementById('b').value);"+
-        '<td><input type="input-group-text" class="form-control" name="" value="0" id="ans"  readonly></td>' +
-        '<td>' + actions + '</td>' +
-        '</tr>';
+      var row = `<tr> 
+        <td><input type="text" class="form-control" name="" id="no."></td>
+        <td><input type="text" class="form-control" name="" id="รายการสินค้า"></td>
+        <td><input type="text" class="form-control" name="" id="ขนาดบรรจุ"></td>
+        <td><input type="text" class="form-control" name="" id="a" onkeyup="mult(document.getElementById('a').value,!!document.getElementById('b').value);"></td>
+        <td><input type="text" class="form-control" name="" id="b" onkeyup= "mult(document.getElementById('a').value,document.getElementById('b').value);"></td>
+        <td><input type="input-group-text" class="form-control" name="" id="ans" value= "0" readonly></td>
+        <td>${actions}</td> 
+        </tr>`;
       $("table").append(row);
       $("table tbody tr").eq(index + 1).find(".add, .edit").toggle();
       $('[data-toggle="tooltip"]').tooltip();
     });
+
+
     // Add row on add button click
     $(document).on("click", ".add", function () {
       var empty = false;
@@ -151,6 +155,8 @@
         $(".add-new").removeAttr("disabled");
       }
     });
+
+
     // Edit row on edit button click
     $(document).on("click", ".edit", function () {
       $(this).parents("tr").find("td:not(:last-child)").each(function () {
@@ -159,24 +165,31 @@
       $(this).parents("tr").find(".add, .edit").toggle();
       $(".add-new").attr("disabled", "disabled");
     });
+
+
     // Delete row on delete button click
     $(document).on("click", ".delete", function () {
       $(this).parents("tr").remove();
       $(".add-new").removeAttr("disabled");
     });
   });
-</script>
 
-<script>
   function mult(p1, p2) {
     var ans;
-    console.log("p1 : ${p1}")
-    console.log("p2 : ${p2}")
+    console.log(p1)
+    console.log(p2)
+    console.log(ans)
     ans = p1 * p2;
-
+    
     document.getElementById('ans').value = parseFloat(ans).toFixed(2);
-  }
+  };
+
 </script>
+
+
+    
+
+
 
 
 
