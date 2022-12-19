@@ -125,7 +125,7 @@
         <td><input type="text" class="form-control" name="" id="ขนาดบรรจุ"></td>
         <td><input type="text" class="form-control" name="" id="a" onkeyup="mult(document.getElementById('a').value,!!document.getElementById('b').value);"></td>
         <td><input type="text" class="form-control" name="" id="b" onkeyup= "mult(document.getElementById('a').value,document.getElementById('b').value);"></td>
-        <td><input type="input-group-text" class="form-control" name="" id="ans" value= "0" readonly></td>
+        <td><input type="text" class="form-control" name="" id="ans" value= "" disabled='disabled'></td>
         <td>${actions}</td> 
         </tr>`;
       $("table").append(row);
@@ -160,7 +160,7 @@
     // Edit row on edit button click
     $(document).on("click", ".edit", function () {
       $(this).parents("tr").find("td:not(:last-child)").each(function () {
-        $(this).html('<input type="text" class="form-control" value="' + $(this).text() + '">');
+        $(this).html('<input type="text"  disabled="disabled" class="form-control" value="" ' + $(this).text() + '">');
       });
       $(this).parents("tr").find(".add, .edit").toggle();
       $(".add-new").attr("disabled", "disabled");
@@ -174,15 +174,18 @@
     });
   });
 
+  
   function mult(p1, p2) {
     var ans;
+    ans = p1 * p2;
+    
     console.log(p1)
     console.log(p2)
     console.log(ans)
-    ans = p1 * p2;
     
     document.getElementById('ans').value = parseFloat(ans).toFixed(2);
   };
+
 
 </script>
 
@@ -316,6 +319,17 @@
       </tbody>
     </table>
     <br><br>
+    <tr>
+      
+      <div class="d-flex flex-row-reverse">
+        <div class = "p-2"><td>Total</td>
+          <td><input type='text'  name = "" id="" disabled='disabled'></td>
+          <td><input type='text' name = "" id="" disabled='disabled'></td> </div>
+        
+    </div>
+    </tr>
+
+  <br><br>
 
     <div class="row">
       <div class="col-md-6">
