@@ -2,9 +2,6 @@
 
 {% block content %}
 
-
-
-
 <script>
 
     function createItem() {
@@ -27,7 +24,6 @@ function registerListeners() {
 
 function calculateTotal() {
   var total = 0;
-  
   $('.item').each(function() {
     var value = $(this).val();
     total += isNaN(value) ? 0 : (+value);
@@ -35,17 +31,6 @@ function calculateTotal() {
   $('#total').html(total);
   console.log(total)
 }
-
-function mult(p1, p2) {
-    var ans;
-    ans = p1 * p2;
-    
-    console.log(p1)
-    console.log(p2)
-    console.log(ans)
-    
-    document.getElementById('ans').value = parseFloat(ans).toFixed(2);
-  }
 
 
 
@@ -83,10 +68,6 @@ $('input').keyup(function(){
 })
 </script>
 -->
-
-
-
-
 
 <br><br><br><br><br><br>
 

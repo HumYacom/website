@@ -125,7 +125,7 @@
         <td><input type="text" class="form-control" name="ขนาดบรรจุ" id=""></td>
         <td><input type="text" class="form-control variable-field quantity" name="จำนวน" ></td>
         <td><input type="text" class="form-control variable-field costpriceunit" name="ราคาต่อหน่วย" ></td>
-        <td><input type="text" class="form-control width-80 totalcostprice" name="รวมเป็นเงิน" value="0" ></td>
+        <td><input type="text" class="form-control width-80 totalcostprice" name="รวมเป็นเงิน" value="0"  readonly ></td>
         <td>${actions}</td> 
         </tr>`;
       $("table").append(row);
@@ -141,9 +141,9 @@
       input.each(function () {
         if (!$(this).val()) {
           $(this).addClass("error");
-          empty = false;
+          empty = true;
         } else {
-          $(this).addClass("error");
+          $(this).removeClass("error");
         }
       });
       $(this).parents("tr").find(".error").first().focus();
@@ -160,8 +160,8 @@
     // Edit row on edit button click
     $(document).on("click", ".edit", function () {
       $(this).parents("tr").find("td:not(:last-child)").each(function () {
-        $(this).html('<input type="text" class="form-control" value="" readonly ' + 
-        $(this).text() + '">' );
+        $(this).html('<input type="text" class="form-control " value="" ' +
+          $(this).text() + '"> ');
       });
 
       $(this).parents("tr").find(".add, .edit").toggle();
@@ -176,19 +176,17 @@
     });
   });
 
-// calculate
-  $(document).click(function() {
-      $('.variable-field').on("input", function() {
-        var $row = $(this).closest('tr');
-        var qty = $row.find('.quantity').val() || 0;
-        var costprice = $row.find('.costpriceunit').val() || 0;
-        $row.find('.totalcostprice').val(qty * costprice);
-        
-      });
-    });
+  // calculate
+  $(document).click(function () {
+    $('.variable-field').on("input", function () {
+      var $row = $(this).closest('tr');
+      var qty = $row.find('.quantity').val() || 0;
+      var costprice = $row.find('.costpriceunit').val() || 0;
+      $row.find('.totalcostprice').val(qty * costprice);
 
-  
-    
+    });
+  });
+
 
 
 </script>
@@ -317,16 +315,17 @@
     </table>
     <br><br>
     <tr>
-      
+
       <div class="d-flex flex-row-reverse">
-        <div class = "p-2"><td>Total</td>
-          <td><input type='text'  class = "form-control sum" name = "รวมสุทิพธ์" id=""  disabled='disabled'></td>
-</div>
-        
-    </div>
+        <div class="p-2">
+          <td>Total: <span id="sum"></span></td>
+          <td><input type='text' class="form-control" name="" id="" disabled='disabled'></td>
+        </div>
+
+      </div>
     </tr>
 
-  <br><br>
+    <br><br>
 
     <div class="row">
       <div class="col-md-6">
