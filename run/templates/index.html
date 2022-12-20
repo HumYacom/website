@@ -2,15 +2,20 @@
 
 {% block content %}
 
+
+
+
 <script>
+
     function createItem() {
-  var $item = $( `<tr> 
+  var $item = $(`<tr> 
         <td><input type="text" class="form-control" name="" id="no."></td>
         <td><input type="text" class="form-control" name="" id="รายการสินค้า"></td>
         <td><input type="text" class="form-control" name="" id="ขนาดบรรจุ"></td>
-        <td><input type="text" class="item" name="" id="a" onkeyup="mult(document.getElementById('a').value,!!document.getElementById('b').value);"></td>
-        <td><input type="text" class="item" name="" id="b" onkeyup= "mult(document.getElementById('a').value,document.getElementById('b').value);"></td>
-        <td><input type="text" class="form-control" name="" id="ans" value= "" disabled='disabled'></td>
+        <td><input type="text" class="item" name="" id="a" ></td>
+        <td><input type="text" class="item" name="" id="b" ></td>
+        <td><input type="text" class="form-control" name="" id="ans" value= "" disabled='disabled'></td><>
+        
         </tr>`);
   return $item;
 }
@@ -20,15 +25,30 @@ function registerListeners() {
   $('.item').on('keyup',calculateTotal);
 }
 
-
 function calculateTotal() {
   var total = 0;
+  
   $('.item').each(function() {
     var value = $(this).val();
     total += isNaN(value) ? 0 : (+value);
   });
   $('#total').html(total);
+  console.log(total)
 }
+
+function mult(p1, p2) {
+    var ans;
+    ans = p1 * p2;
+    
+    console.log(p1)
+    console.log(p2)
+    console.log(ans)
+    
+    document.getElementById('ans').value = parseFloat(ans).toFixed(2);
+  }
+
+
+
 $(function() {
   var $container = $('#container');
   $('#new').click(function() {
@@ -37,8 +57,8 @@ $(function() {
     registerListeners();
   });
 })
+    
 </script>
-
 
 <!-- 
 <script>
@@ -63,14 +83,17 @@ $('input').keyup(function(){
 })
 </script>
 -->
-<br><br><br><br><br>
-<div id="container">
 
-</div>
+
+
+
+
+<br><br><br><br><br><br>
+
+<div id="container"></div>
 <div>
   <div>Total: <span id="total"></span></div>
   <button id="new">Add new item</button>
-</div>
 
 <!--
 <div class="price_table">
