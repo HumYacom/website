@@ -125,17 +125,17 @@
         <td><input type="text" class="form-control" name="ขนาดบรรจุ" id=""></td>
         <td><input type="text" class="form-control variable-field quantity" name="จำนวน" ></td>
         <td><input type="text" class="form-control variable-field costpriceunit" name="ราคาต่อหน่วย" ></td>
-        <td><input type="text" class="form-control width-80 totalcostprice" name="รวมเป็นเงิน" value="0"  readonly ></td>
+        <td><input type="text" class="form-control width-80  qty1 totalcostprice" name="รวมเป็นเงิน" value="0"  readonly ></td>
         <td>${actions}</td> 
         </tr>`;
       $("table").append(row);
-      $("table tbody tr").eq(index + 1).find(".add, .edit").toggle();
+      $("table tbody tr").eq(index + 1).find(".add").toggle();
       $('[data-toggle="tooltip"]').tooltip();
     });
 
 
     // Add row on add button click
-    $(document).on("click", ".add", function () {
+    $(document).on("click", function () {
       var empty = false;
       var input = $(this).parents("tr").find('input[type="text"]');
       input.each(function () {
@@ -151,23 +151,10 @@
         input.each(function () {
           $(this).parent("td").html($(this).val());
         });
-        $(this).parents("tr").find(".add, .edit").toggle();
+        $(this).parents("tr").find(".add").toggle();
         $(".add-new").removeAttr("disabled");
       }
     });
-
-
-    // Edit row on edit button click
-    $(document).on("click", ".edit", function () {
-      $(this).parents("tr").find("td:not(:last-child)").each(function () {
-        $(this).html('<input type="text" class="form-control " value="" ' +
-          $(this).text() + '"> ');
-      });
-
-      $(this).parents("tr").find(".add, .edit").toggle();
-      $(".add-new").attr("disabled", "disabled");
-    });
-
 
     // Delete row on delete button click
     $(document).on("click", ".delete", function () {
@@ -187,7 +174,15 @@
     });
   });
 
+  $(document).on("click", ".qty1", function () {
+    var sum = 0;
+    $(".qty1").each(function () {
+      sum += +$(this).val();
+    });
+    $(".total").val(sum);
 
+    console.log(a);
+  });
 
 </script>
 
@@ -279,7 +274,7 @@
 
     <div class="row">
       <div class="d-flex justify-content-evenly">
-        <button type="button" class="btn btn-info add-new"><i class="material-icons">&#xE03B;</i> Add New</button>
+        <button type="button" class="btn btn-info add-new"><i class="bi bi-person-add"></i> Add New</button>
       </div>
     </div>
     <br>
@@ -306,25 +301,20 @@
           <td></td>
           <td></td>
           <td>
-            <a class="add" title="Add" data-toggle="tooltip"><i class="material-icons">&#xE03B;</i></a>
-            <a class="edit" title="Edit" data-toggle="tooltip"><i class="material-icons">&#xE254;</i></a>
-            <a class="delete" data-toggle="tooltip"><i class="material-icons">&#xE872;</i></a>
+            <a class="delete" data-toggle="tooltip"><i class="bi bi-trash2-fill"></i></a>
           </td>
         </tr>
       </tbody>
     </table>
     <br><br>
-    <tr>
-
-      <div class="d-flex flex-row-reverse">
-        <div class="p-2">
-          <td>Total: <span id="sum"></span></td>
-          <td><input type='text' class="form-control" name="" id="" disabled='disabled'></td>
-        </div>
-
-      </div>
-    </tr>
-
+    <div>
+      <tr>
+        <div class="d-flex flex-row-reverse">
+          <div class="p-2">
+            <td>Total:<input type='text' class="form-control total" name="" id="" disabled='disabled'></td>
+          </div>
+      </tr>
+    </div>
     <br><br>
 
     <div class="row">
@@ -339,7 +329,8 @@
         <textarea name="Remark" name="mark" id="" cols="30" rows="10" maxlength="100" placeholder="กรอกรายละเอียด packaging เช่น
   - xxx
   - xxxxx
-  - xxxx"></textarea>
+  - xxxx">
+</textarea>
       </div>
     </div>
 
@@ -349,13 +340,22 @@
     <input type="submit" onclick="alert('รายละเอียดของคุณได้ถูกส่งแล้ว')" value="ส่งข้อมูล" class="btn btn-success">
     <input type="reset" value="ล้าง" class="btn btn-danger">
 </div>
-
-
 </div>
 </form>
 
-
-
-
-
 {% endblock %}
+
+<!--
+
+  
+// Edit row on edit button click
+$(document).on("click", ".edit", function () {
+  $(this).parents("tr").find("td:not(:last-child)").each(function () {
+    $(this).html('<input type="text" class="form-control " value="" ' +
+      $(this).text() + '"> ');
+  });
+
+  $(this).parents("tr").find(".add, .edit").toggle();
+  $(".add-new").attr("disabled", "disabled");
+});
+-->
