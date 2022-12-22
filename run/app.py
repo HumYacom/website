@@ -10,9 +10,7 @@ def index():
 def work():
     return render_template("work.html")
 
-@app.route("/return")
-def adminup():
-    return render_template("#.php")
+
 
 if __name__ == "__main__":
     app.run(debug=True)
