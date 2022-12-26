@@ -120,10 +120,10 @@
       $(this).attr("disabled", "disabled");
       var index = $("table tbody tr:last-child").index();
       var row = `<tr> 
-        <td><input type="text" class="form-control" name="no" id=""></td>
-        <td><input type="text" class="form-control" name="รายการสินค้า" id=""></td>
-        <td><input type="text" class="form-control" name="ขนาดบรรจุ" id=""></td>
-        <td><input type="text" class="form-control variable-field quantity" name="จำนวน" ></td>
+        <td><input type="text" class="form-control" name="ID" id="ID"></td>
+        <td><input type="text" class="form-control" name="name_products" id="name_products"></td>
+        <td><input type="text" class="form-control" name="size" id="size"></td>
+        <td><input type="text" class="form-control variable-field quantity" name="quantity" id= "quantity"></td>
         <td><input type="text" class="form-control variable-field costpriceunit" name="ราคาต่อหน่วย" ></td>
         <td><input type="text" class="form-control width-80  qty1 totalcostprice" name="รวมเป็นเงิน" value="0"  readonly ></td>
         <td>${actions}</td> 
@@ -192,7 +192,7 @@
 </div>
 <br>
 <div class="d-flex align-items-stretch">
-  <form action="#.php" method="post">
+  <form method="post" action="<?php echo $_SERVER['PHP_SELF'];?>">
     <div class="row">
       <div class="col-md-6">
         <label for="">ชื่อ (Customer Name)</label>
@@ -337,7 +337,7 @@
 
     <br><br>
 
-    <input type="submit" name = "submit" onclick="alert('รายละเอียดของคุณได้ถูกส่งแล้ว')" value="ส่งข้อมูล" class="btn btn-success">
+    <input type="submit" name = "submit" value="ส่งข้อมูล" class="btn btn-success">
     <input type="reset" value="ล้าง" class="btn btn-danger">
 </div>
 </div>
