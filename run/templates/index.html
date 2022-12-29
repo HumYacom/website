@@ -1,13 +1,87 @@
 {% extends "layout.html"%}
 
 {% block content %}
+<br><br><br><br><br><br>
+<div class="d-flex justify-content-center">ทะเบียนรายชื่อ</div>
+<br>
+<div class="container">
+  <form>
+    <table class="table table-light table-bordered">
+      <thead class="table-info">
+        <tr>
+          <th>ID</th>
+          <th>name_products</th>
+          <th>size</th>
+          <th>quantity</th>
+          <th>quantity_unit</th>
+          <th>sum</th>
+          <th>Actions</th>
+        </tr>
+      </thead>
+      <tbody class="table-group-divider">
+        {% for row in datas %}
+        <tr>
+          <td>{{row.0}}</td>
+          <td>{{row.1}}</td>
+          <td>{{row.2}}</td>
+          <td>{{row.3}}</td>
+          <td>{{row.4}}</td>
+          <td>{{row.5}}</td>
+          <td>
+            <button type="button" class="btn btn-warning edit" title="edit" data-toggle="tooltip" data-bs-toggle="modal"
+              data-bs-target="#exampleModal{{row.0}}"><i class="bi bi-folder2-open"></i></button>
 
-<form action="{{url_for('show')}}" method="get" >
-  <div class="container">
+            <button type="button" class="btn btn-danger delete" title="Delete"><i
+                class="bi bi-trash2-fill"></i></button>
+          </td>
+        </tr>
+        <div class="modal fade" id="exampleModal{{row.0}}" tabindex="-1" aria-labelledby="exampleModalLabel"
+          aria-hidden="true">
+          <div class="modal-dialog">
+            <div class="modal-content">
+              <div class="modal-header">
+                <h1 class="modal-title fs-5" id="exampleModalLabel">แก้ไขข้อมูล</h1>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+              </div>
+              <div class="modal-body">
+                <form action="{{url_for('admindata.adminedit')}}" method="POST">
 
+                  <div class="form-group">
+                    
+                    <input type="hidden" class="form-control" id="" value="{{row.0}}" name="ID">
+                  </div>
+                  <div class="form-group">
+                    <label for="">name_products</label>
+                    <input type="text" class="form-control" id="" value="{{row.1}}" name="name_products">
+                  </div>
+                  <div class="form-group">
+                    <label for="">size</label>
+                    <input type="text" class="form-control" id="" value="{{row.2}}" name="size">
+                  </div>
+                  <div class="form-group">
+                    
+                    <input type="hidden" class="form-control" id="" value="{{row.3}}"  name="quantity">
+                  </div>
+                  <div class="form-group">
+                    
+                    <input type="hidden" class="form-control" id="" value="{{row.4}}"  name="quantity_unit">
+                  </div>
+                  <div class="form-group">
+                    
+                    <input type="hidden" class="form-control" id="" value="{{row.5}}"  name="sum">
+                  </div>
+                  <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                    <button type="submit" class="btn btn-primary">ยืนยัน</button>
+                  </div>
 
-  </div>
+                </form>
+              </div>
 
+              {% endfor %}
+      </tbody>
+    </table>
 
-</form>
+  </form>
+</div>
 {% endblock %}
