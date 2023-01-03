@@ -1,4 +1,4 @@
-from flask import Blueprint,render_template,request
+from flask import Blueprint,render_template,request,url_for,redirect
 import pymysql
 from host_connect import *
 
@@ -18,8 +18,18 @@ def adminindex():
         print(rows)
     return render_template("index.html", datas = rows)
 
+
 @admindata.route("/adminedit",methods=['POST'])
 def adminedit():
-    
-    
-        return "5"
+    if request.method == 'POST':
+        name_products = request.form['name_products']
+        size = request.form['size']
+        cur = db.cursor()
+        try:
+            sql = "UPDATE cerficate SET  name_products= %s, size = %s"
+            cur.execute(sql,(name_products,size))
+            
+        except:
+            db.commit()
+        
+        return redirect(url_for('admindata.adminindex'))
